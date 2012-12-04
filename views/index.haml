@@ -1,0 +1,60 @@
+!!!5
+%html
+  %head
+    %title= settings.site_title
+    %link{:rel => 'stylesheet', :href => '/rainbow/themes/github.css'}
+    %link{:rel => 'stylesheet', :href => '/api.css'}
+
+  %body
+    #main.wrap
+
+      #header.cf
+        %h1= settings.site_title
+        #key
+          %label{ :for => 'z_key' }
+            Your Key
+            %input{ :name => 'z_key', :value => @z_key }
+
+
+      #begin.cf
+        :markdown
+          Setup 
+          -----
+          #{settings.site_title} is a [Zillow API](http://www.zillow.com/howto/api/APIOverview.htm) 
+          implementation written in [Ruby](http://ruby-lang.org/)
+          designed to self document in this [Sinatra](http://www.sinatrarb.com/) app.
+          To use some of the samples below, 
+          just instantiate a basic `Zirrow` object:
+
+        %pre
+          %code{ 'data-language' => 'ruby' }= "require './Zirrow'\n@z = Zirrow.new :key => 'ZWSID'"
+        
+          
+      #apis.cf
+        %h2 Methods 
+
+      -@apis.each do |api|
+        .api{ :id => api[:path] } 
+          %h2
+            %a{ :href => "/#{api[:path]}" }= "/#{api[:path]}"
+          %p= api[:desc]
+
+          -# IMPLEMENTATION
+          %pre.implemenation
+            %code{ 'data-language' => 'ruby' }= api[:example]
+
+          -# SOURCE
+          %pre.source
+            %code{ 'data-language' => 'ruby' }= api[:source]
+
+          -# SAMPLE OUTPUT
+          .hideable
+            .hide x
+            %pre.sample
+              %code{ 'data-language' => 'javascript' }
+
+    %script{ :src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" }
+    %script{ :src => "/rainbow/js/rainbow.min.js" }
+    %script{ :src => "/rainbow/js/language/ruby.js" }
+    %script{ :src => "/rainbow/js/language/javascript.js" }
+    %script{ :src => "/api.js" }
