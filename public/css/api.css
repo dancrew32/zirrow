@@ -22,9 +22,11 @@ html, body {
   clear: both; }
 
 h1 {
-  color: #344e8f;
   margin: 0 0 10px;
   float: left; }
+  h1 a {
+    color: #344e8f;
+    text-decoration: none; }
 
 p {
   color: #555555;
@@ -43,7 +45,8 @@ code {
 
 #header {
   border-bottom: 1px solid #eeeeee;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  position: relative; }
 
 #key {
   float: right;
@@ -60,6 +63,12 @@ code {
 
 #begin {
   border-bottom: 1px solid #eeeeee; }
+
+#github {
+  position: absolute;
+  left: 113px;
+  top: 13px;
+  color: #aaaaaa; }
 
 h2 {
   color: #aaaaaa; }

@@ -12,11 +12,12 @@ helpers do
 end
 
 before do
-	@z_key = params.fetch 'z_key', @@keys[:zillow]
-	@z     = Zirrow.new :key => @z_key
+	@z_key  = params.fetch 'z_key', @@keys[:zillow]
+	@z      = Zirrow.new :key => @z_key
 end
 
 get '/' do
+	@github = 'https://github.com/dancrew32/zirrow'
 	@apis = []
 	@z.apis.each do |k,v| 
 		@apis << {

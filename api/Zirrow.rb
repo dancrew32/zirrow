@@ -15,19 +15,19 @@ class Zirrow
 		@apis = {
 			'demographics' => {
 				:url     => 'GetDemographics',
-			    :example => "@z.demographics 'zip' => 94121",
+				:example => "@z.demographics 'zip' => 94121",
 			},
 			'search' => {
 				:url     => 'GetSearchResults',	
-			    :example => "@z.search 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'",
+				:example => "@z.search 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'",
 			},
 			'zestimate' => {
 				:url     => 'GetZestimate',
-				:example => "@z.zestimate 'zpid' => 48749425, 'rentzestimate' => true"
+				:example => "@z.zestimate 'zpid' => 48749425, 'rentzestimate' => true",
 			},
 			'chart' => {
 				:url     => 'GetChart',		
-				:example => '',
+				:example => "@z.chart 'zpid' => 48749425",
 			},
 			'comps' => {
 				:url     => 'GetComps',
@@ -39,7 +39,7 @@ class Zirrow
 			},
 			'details' => {
 				:url     => 'GetUpdatedPropertyDetails',
-				:example => "pj @z.details 'zpid' => 48749425",
+				:example => "@z.details 'zpid' => 48749425",
 			}
 		}
 	end

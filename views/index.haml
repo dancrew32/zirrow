@@ -2,14 +2,19 @@
 %html
   %head
     %title= settings.site_title
-    %link{:rel => 'stylesheet', :href => '/rainbow/themes/github.css'}
-    %link{:rel => 'stylesheet', :href => '/api.css'}
+    %link{:rel => 'stylesheet', :href => '/js/rainbow/themes/github.css'}
+    %link{:rel => 'stylesheet', :href => '/css/api.css'}
+    %style
+      :sass
+
 
   %body
     #main.wrap
 
       #header.cf
-        %h1= settings.site_title
+        %h1 
+          %a{ :href => @github }= settings.site_title
+        %a#github{ :href => @github } Github
         #key
           %label{ :for => 'z_key' }
             Your Key
@@ -39,9 +44,8 @@
             %a{ :href => "/#{api[:path]}" }= "/#{api[:path]}"
           %p= api[:desc]
 
-          -# IMPLEMENTATION
           %pre.implemenation
-            %code{ 'data-language' => 'ruby' }= api[:example]
+            %code{ 'data-language' => 'ruby', 'data-example' => api[:example] }= api[:example]
 
           -# SOURCE
           %pre.source
@@ -54,7 +58,7 @@
               %code{ 'data-language' => 'javascript' }
 
     %script{ :src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" }
-    %script{ :src => "/rainbow/js/rainbow.min.js" }
-    %script{ :src => "/rainbow/js/language/ruby.js" }
-    %script{ :src => "/rainbow/js/language/javascript.js" }
-    %script{ :src => "/api.js" }
+    %script{ :src => "/js/rainbow/js/rainbow.min.js" }
+    %script{ :src => "/js/rainbow/js/language/ruby.js" }
+    %script{ :src => "/js/rainbow/js/language/javascript.js" }
+    %script{ :src => "/js/api.js" }
