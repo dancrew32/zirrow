@@ -11,8 +11,11 @@ designed to self-document in a [Sinatra](http://www.sinatrarb.com/) app.
 
 To get all the gems, `bundle install`
 
-If you just want a really simple Zillow Api class, use `/api/Zirrow.rb`.
-If you want to run the api site, just `rackup config.ru`.
+If you just want a really simple Zillow Api class, use [/api/Zirrow.rb](https://github.com/dancrew32/zirrow/blob/master/api/Zirrow.rb).
+
+If you want to run the api site, just `rackup config.ru` or 
+if you're on [Heroku](http://www.heroku.com/), `heroku create && git push heroku master`.
+
 No clue what rack is? Read about here [Rack](https://devcenter.heroku.com/articles/rack)
 
 You'll need to request a 
