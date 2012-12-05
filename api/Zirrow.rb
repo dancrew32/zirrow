@@ -21,6 +21,10 @@ class Zirrow
 				:url     => 'GetSearchResults',	
 				:example => "@z.search 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'",
 			},
+			'deepsearch' => {
+				:url     => 'GetDeepSearchResults',	
+				:example => "@z.deepsearch 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'",
+			},
 			'zestimate' => {
 				:url     => 'GetZestimate',
 				:example => "@z.zestimate 'zpid' => 48749425, 'rentzestimate' => true",
@@ -32,6 +36,10 @@ class Zirrow
 			'comps' => {
 				:url     => 'GetComps',
 				:example => "@z.comps 'zpid' => 48749425",
+			},
+			'deepcomps' => {
+				:url     => 'GetDeepComps',
+				:example => "@z.deepcomps 'zpid' => 48749425",
 			},
 			'children' => {
 				:url     => 'GetRegionChildren',
@@ -68,6 +76,17 @@ class Zirrow
 		req __method__, o
 	end
 
+	# DEEPSEARCH
+	def deepsearch o={}
+		o = {
+			'address'       => nil, # req
+			'citystatezip'  => nil, # req
+			'rentzestimate' => nil,
+		}.merge o
+
+		req __method__, o
+	end
+
 	# ZESTIMATE
 	def zestimate o={}
 		o = {
@@ -93,6 +112,17 @@ class Zirrow
 
 	# COMPS
 	def comps o={}
+		o = {
+			'zpid'          => nil,  # req	
+			'count'         => '25', # req '1-25'
+			'rentzestimate' => nil,
+		}.merge o
+
+		req __method__, o
+	end
+
+	# DEEPCOMPS
+	def deepcomps o={}
 		o = {
 			'zpid'          => nil,  # req	
 			'count'         => '25', # req '1-25'

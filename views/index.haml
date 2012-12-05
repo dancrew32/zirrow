@@ -28,11 +28,13 @@
           #{settings.site_title} is a [Zillow API](http://www.zillow.com/howto/api/APIOverview.htm) 
           implementation written in [Ruby](http://ruby-lang.org/)
           designed to self document in this [Sinatra](http://www.sinatrarb.com/) app.
-          To use some of the samples below, 
-          just instantiate a basic `Zirrow` object:
+          To use some of the samples below, request a 
+          [Zillow Api Key](http://www.zillow.com/webservice/APIUpgradeRequest.htm), 
+          paste it in the "Your Key" input above and
+          then instantiate a basic `Zirrow` object:
 
         %pre
-          %code{ 'data-language' => 'ruby' }= "require './Zirrow'\n@z = Zirrow.new :key => 'ZWSID'"
+          %code{ 'data-language' => 'ruby' }= "require './Zirrow'\n@z = Zirrow.new :key => 'Your Key'"
         
           
       #apis.cf

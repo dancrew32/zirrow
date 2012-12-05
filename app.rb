@@ -12,13 +12,14 @@ helpers do
 end
 
 before do
-	@z_key  = params.fetch 'z_key', @@keys[:zillow]
-	@z      = Zirrow.new :key => @z_key
+	@z_key = params.fetch 'z_key', @@keys[:zillow]
+	@z     = Zirrow.new :key => @z_key
 end
 
 get '/' do
 	@github = 'https://github.com/dancrew32/zirrow'
-	@apis = []
+	@readme =
+	@apis   = []
 	@z.apis.each do |k,v| 
 		@apis << {
 			:path    => (k.to_s),
@@ -38,6 +39,10 @@ get '/search' do
 	pj @z.search 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'	
 end
 
+get '/deepsearch' do
+	pj @z.deepsearch 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'	
+end
+
 get '/zestimate' do
 	pj @z.zestimate 'zpid' => 48749425, 'rentzestimate' => true
 end
@@ -48,6 +53,10 @@ end
 
 get '/comps' do
 	pj @z.comps 'zpid' => 48749425
+end
+
+get '/deepcomps' do
+	pj @z.deepcomps 'zpid' => 48749425
 end
 
 get '/children' do
