@@ -15,7 +15,7 @@ $(function() {
 			code.removeClass('rainbow')
 			code[0].innerHTML = json_text
 			Rainbow.color()
-			hide.slideDown(200);
+			hide.slideDown(200)
 		})
 	}
 	

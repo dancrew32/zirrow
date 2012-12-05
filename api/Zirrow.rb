@@ -9,7 +9,7 @@ class Zirrow
 		require 'json'
 		@options = {
 			:key => '',
-			:how => 'http://www.zillow.com/howto/api'
+			:docs => 'http://www.zillow.com/howto/api'
 		}.merge options
 
 		@apis = {
@@ -48,14 +48,24 @@ class Zirrow
 			'details' => {
 				:url     => 'GetUpdatedPropertyDetails',
 				:example => "@z.details 'zpid' => 48749425",
+			},
+			'rate' => {
+				:url     => 'GetRateSummary',
+				:example => "@z.rate 'state' => 'CA'",
 			}
+		}
+
+		@selectors = {
+			:description => '#corpright p:first',
+			:parameters  => '#corpright table:first td:nth-child(1)',
+			:expect      => '#corpright table:nth-child(2)',
 		}
 	end
 
 	# DEMOGRAPHICS
 	def demographics o={}
 		o = {
-			'regionid'     => nil,
+			'regionId'     => nil,
 			'state'        => nil,
 			'city'         => nil,
 			'neighborhood' => nil,
@@ -135,7 +145,7 @@ class Zirrow
 	# CHILDREN
 	def children o={}
 		o = {
-			'regionid'     => nil, # req*
+			'regionId'     => nil, # req*
 			'state'        => nil, # req*
 			'city'         => nil,
 			'neighborhood' => nil,
@@ -154,13 +164,83 @@ class Zirrow
 		req __method__, o
 	end
 
-	# HOW TO
-	def how api
-		url  = "#{@options[:how]}/#{@apis[api][:url]}.htm"
-		html = get_html url
+	# RATE
+	def rate o={}
+		o = {
+			'state'         => nil,
+			'output'        => 'json',
+			'callback'      => nil,
+		}.merge o
+
+		req __method__, o
+	end
+
+=begin
+
+monthly_payments
+GetMonthlyPayments
+
+monthly_payments_advanced
+CalculateMonthlyPaymentsAdvanced
+
+afford
+CalculateAffordability
+
+refinance
+CalculateRefinance
+
+adjustable_mortgage
+CalculateAdjustableMortgage
+
+discount_points
+CalculateMortgageTerms
+
+bi_weekly_payment
+CalculateBiWeeklyPayment
+
+no_cost_vs_traditional
+CalculateNoCostVsTraditional
+
+tax_savings
+CalculateTaxSavings
+
+fixed_vs_adjustable
+CalculateFixedVsAdjustableRate
+
+closing_cost
+CalculateClosingCostImpact
+
+interest_vs_traditional
+CalculateInterstOnlyVsTraditional
+
+heloc
+CalculateHELOC
+
+=end
+
+
+	# DOCS
+	def docs api
+		get_html "#{@options[:docs]}/#{@apis[api][:url]}.htm"
+	end
+
+	# DESCRIPTION
+	def describe html
 		out  = ""
-		html.css('#corpright p:first').each { |n| out += n }
+		html.css(@selectors[:description]).each { |n| out += n }
 		out
+	end
+
+	# PARAMS
+	def parameters html
+		out = []
+		html.css(@selectors[:parameters]).each_with_index { |n,i| out << n.to_s.chomp! unless i < 1 or n.to_s == nil }
+		out
+	end
+
+	# WHAT TO EXPECT
+	def expect html
+		html.css(@selectors[:expect]).to_s
 	end
 
 	private

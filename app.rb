@@ -21,9 +21,12 @@ get '/' do
 	@readme =
 	@apis   = []
 	@z.apis.each do |k,v| 
+		docs = @z.docs k.to_s
 		@apis << {
 			:path    => (k.to_s),
-			:desc    => (@z.how k.to_s),
+			:desc    => (@z.describe docs),
+			:param   => (@z.parameters docs),
+			:expect  => (@z.expect docs),
 			:example => v[:example],
 			:source  => get_source('Zirrow', k.to_s),
 		}
@@ -65,4 +68,8 @@ end
 
 get '/details' do
 	pj @z.details 'zpid' => 48749425
+end
+
+get '/rate' do
+	pj @z.rate 'state' => 'CA'
 end

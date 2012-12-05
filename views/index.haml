@@ -45,6 +45,13 @@
           %h2
             %a{ :href => "/#{api[:path]}" }= "/#{api[:path]}"
           %p= api[:desc]
+          .wat 
+            %strong Params 
+            ~api[:param]
+
+          .wat 
+            %strong Expect
+            ~api[:expect]
 
           %pre.implemenation
             %code{ 'data-language' => 'ruby', 'data-example' => api[:example] }= api[:example]
