@@ -11,9 +11,9 @@ designed to self-document in a [Sinatra](http://www.sinatrarb.com/) app.
 
 To get all the gems, `bundle install`
 
-If you just want a really simple Zillow Api class, use `/api/Zirrow.rb`
-If you want to run the api site, just `rackup config.ru`
-No clue what rack is? https://devcenter.heroku.com/articles/rack
+If you just want a really simple Zillow Api class, use `/api/Zirrow.rb`.
+If you want to run the api site, just `rackup config.ru`.
+No clue what rack is? Read about here [Rack](https://devcenter.heroku.com/articles/rack)
 
 You'll need to request a 
 [Zillow Api Key](http://www.zillow.com/webservice/APIUpgradeRequest.htm) 
@@ -27,9 +27,10 @@ Zirrow scrapes the many pages of the
 for summaries of each api when you create a new method in `Zirrow.rb`
 and implement it in the Sinatra app.
 
+
 ## How do I use it?
 
-The following returns search results for this address:
+The following returns search results (json) for this address:
 
 ```ruby
 @z = new.Zirrow :key => 'myZWSID'
@@ -40,5 +41,6 @@ The following returns search results for this address:
 ## What's it going to do?
 
 Zirrow will eventually scrape the api parameters and dynamically compare
-existing parameters to ensure this api wrapper is up to date.
+existing parameters to ensure this api wrapper is up to date. 
+It's even going to dynamically write this README and push it to github.
 
