@@ -3,11 +3,8 @@
   %head
     %title= settings.site_title
     %link{:rel => 'stylesheet', :href => '/js/rainbow/themes/github.css'}
+    %link{:rel => 'stylesheet', :href => '/css/term.css'}
     %link{:rel => 'stylesheet', :href => '/css/api.css'}
-    %style
-      :sass
-        .loader
-          clear: both
 
   %body
     #main.wrap
@@ -30,7 +27,7 @@
           implementation written in [Ruby](http://ruby-lang.org/)
           designed to self document in this [Sinatra](http://www.sinatrarb.com/) app.
           To use some of the samples below, request a 
-          [Zillow Api Key](http://www.zillow.com/webservice/APIUpgradeRequest.htm), 
+          [Zillow Api key](http://www.zillow.com/webservice/APIUpgradeRequest.htm), 
           paste it in the "Your Key" input above and
           then instantiate a basic `Zirrow` object:
 
@@ -41,11 +38,14 @@
       %h2.cf Methods 
       #apis.cf
         %img.loader{ :src => '/i/loader.gif', :style => 'display: block; margin: 0 auto 20px;'}
-
+      
+      %a#top{ :style => 'display:none' } Back to top
 
     %script{ :src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" }
     %script{ :src => "/js/rainbow/js/rainbow.min.js" }
     %script{ :src => "/js/rainbow/js/language/ruby.js" }
     %script{ :src => "/js/rainbow/js/language/javascript.js" }
     %script{ :src => "/js/list.min.js" }
+    %script{ :src => "/js/mouse.js" }
+    %script{ :src => "/js/term.js" }
     %script{ :src => "/js/api.js" }

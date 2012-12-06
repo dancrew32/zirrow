@@ -338,14 +338,11 @@ CalculateHELOC
 	# PARAMS
 	def parameters html
 		params = []
-		reqs   = []
-		html.css(@selectors[:parameters]).each_with_index { |n,i| params << n.to_s.chomp! unless i < 1 }
-		html.css(@selectors[:needed]).each_with_index { |n,i| 
-			next if i < 1
-			reqs << n.to_s
-		}
-		[params, reqs].each { |a| a.delete_if { |x| x == nil } }
-		Hash[(params.zip reqs)] # { param => req, ... }
+		#reqs   = []
+		html.css(@selectors[:parameters]).each_with_index { |n,i| params << n.text unless i < 1 }
+		#html.css(@selectors[:needed]).each_with_index { |n,i| #next if i < 1 #reqs << n.to_s #}
+		params.delete_if { |x| x == nil }
+		params
 	end
 
 	# WHAT TO EXPECT

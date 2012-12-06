@@ -1,7 +1,11 @@
+%a#termtoggle Run Terminal &raquo;
+
 #search
   %label
     Search
-    %input.search
+    %input.search{ 'x-webkit-speech' => 'x-webkit-speech' }
+
+#term{ :style => 'display:none' }
 
 %ul.list
   -@apis.each do |api|
@@ -9,9 +13,6 @@
       %h2
         %a{ :href => "/#{api[:path]}" }= "/#{api[:path]}"
       %p.desc= api[:desc]
-      .wat 
-        %strong Params 
-        =api[:param]
 
       .implementation 
         %strong Implementation
@@ -20,6 +21,10 @@
         %pre
           %code{ 'data-language' => 'ruby' }= api[:zex]
 
+      .parameters 
+        %strong Params 
+        %pre
+          %code{ 'data-language' => 'ruby' }= "#{api[:param].to_s[1..-2]}"
 
       -# SOURCE
       %pre.source

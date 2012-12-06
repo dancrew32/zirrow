@@ -20,3 +20,7 @@ def eval_example
 	docs = @@z.docs method
 	eval "@z.#{method} #{@@z.example docs}"
 end
+
+def eval_term action, args
+	eval "@z.#{action}( #{args} )"
+end

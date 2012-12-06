@@ -7,10 +7,7 @@ set :public_folder, settings.root + '/public'
 set :environment,   :development
 
 @@z  = Zirrow.new
-helpers do
-	require './helpers' 
-end
-
+helpers { require './helpers' }
 
 before do
 	@z_key = params.fetch 'z_key', ''
@@ -41,4 +38,19 @@ end
 	get "/#{k}" do 
 		pj eval_example
 	end
+end
+
+get '/term' do
+	action = params.fetch 'action'
+	return "Not a valid method." unless @z.apis.keys().include? action
+
+	args = params.fetch 'args', ''
+	ct = args.split(' ')
+	if (ct.length < 2)
+		docs =  @z.docs(action)
+		p = @z.parameters docs
+		return "Available parameters: #{p.to_s[1..-2]}"
+	end
+
+	pj eval_term action, args
 end
