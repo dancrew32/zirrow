@@ -1,0 +1,32 @@
+#search
+  %label
+    Search
+    %input.search
+
+%ul.list
+  -@apis.each do |api|
+    %li.api{ :id => api[:path] } 
+      %h2
+        %a{ :href => "/#{api[:path]}" }= "/#{api[:path]}"
+      %p.desc= api[:desc]
+      .wat 
+        %strong Params 
+        =api[:param]
+
+      .implementation 
+        %strong Implementation
+        %a.run{ :href => "/#{api[:path]}", 'data-loader' => 'Run &raquo;' }
+          Run &raquo;
+        %pre
+          %code{ 'data-language' => 'ruby' }= api[:zex]
+
+
+      -# SOURCE
+      %pre.source
+        %code{ 'data-language' => 'ruby' }= api[:source]
+
+      -# SAMPLE OUTPUT
+      .hideable
+        .hide x
+        %pre.sample
+          %code{ 'data-language' => 'javascript' }

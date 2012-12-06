@@ -14,3 +14,9 @@ def get_html url
 	data = open url
 	Nokogiri::HTML data
 end
+
+def eval_example
+	method = request.path_info[1..-1].to_s
+	docs = @@z.docs method
+	eval "@z.#{method} #{@@z.example docs}"
+end
