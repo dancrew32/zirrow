@@ -1,4 +1,4 @@
-Zirrow
+![Zirrow](http://zirrow.danmasq.com/i/zirrow.png)
 =========
 
 [Zirrow](http://zirrow.danmasq.com) is a 
