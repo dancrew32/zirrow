@@ -6,6 +6,9 @@
 wrapper written in [Ruby](http://ruby-lang.org/), 
 designed to self-document in a [Sinatra](http://www.sinatrarb.com/) app.
 
+## Demo
+
+[zirrow.danmasq.com](http://zirrow.danmasq.com)
 
 ## Install
 
