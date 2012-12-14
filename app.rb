@@ -1,16 +1,23 @@
 require 'sinatra'
-require 'yaml'
+require 'data_mapper'
+require 'dm-mysql-adapter'
+require './model/cache'
 require './api/Zirrow'
 
-set :site_title,    'Zirrow'
+DataMapper.setup :default, 'mysql://%s:%s@localhost/%s' % ['user', 'pass', 'dbname']
+DataMapper.auto_upgrade!
+set :site_title, 'Zirrow'
 set :public_folder, settings.root + '/public'
-set :environment,   :development
+set :environment, :development
+set :default_key, 'your key'
 
 @@z  = Zirrow.new
 helpers { require './helpers' }
 
+
+# ROUTES
 before do
-	@z_key = params.fetch 'z_key', ''
+	@z_key = params.fetch 'z_key', settings.default_key
 	@z     = Zirrow.new :key => @z_key
 end
 

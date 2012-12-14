@@ -9,10 +9,22 @@ def get_source cls, method
 end
 
 def get_html url
-	require 'open-uri'
 	require 'nokogiri'
-	data = open url
-	Nokogiri::HTML data
+	a = Cache.first :url => url
+	if a
+		Nokogiri::HTML a.content
+	else
+		require 'open-uri'
+		out = ""
+		open url do |f|
+			out = f.read
+		end
+		c = Cache.new
+		c.url = url
+		c.content = out
+		c.save
+		Nokogiri::HTML out
+	end
 end
 
 def eval_example
@@ -22,5 +34,10 @@ def eval_example
 end
 
 def eval_term action, args
-	eval "@z.#{action}( #{args} )"
+	begin
+		args = '( ' + args.gsub('"', '\'') + ' )'
+	rescue
+		return "Woops there was a syntax error, please try again."
+	end
+	eval "@z.#{action}#{args}"
 end

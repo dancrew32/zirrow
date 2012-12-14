@@ -179,7 +179,11 @@ $(function() {
 	}
 
 	function init() {
-		$.get('/apis', loadup).error(init)
+		$.get('/apis', loadup).error(function() {
+			setTimeout(function() {
+				init()	
+			}, 5000)
+		})
 	}
 
 	function toTop(e) {

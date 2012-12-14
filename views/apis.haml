@@ -9,9 +9,9 @@
 
 %ul.list
   -@apis.each do |api|
-    %li.api{ :id => api[:path] } 
+    %li.api{ :id => "the#{api[:path]}" } 
       %h2
-        %a{ :href => "/#{api[:path]}" }= "/#{api[:path]}"
+        %a{ :href => "/#{api[:path]}" }= "#{api[:path]}"
       %p.desc= api[:desc]
 
       .implementation 

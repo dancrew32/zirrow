@@ -1,10 +1,19 @@
 !!!5
 %html
   %head
-    %title= settings.site_title
+    %title= settings.site_title + " - The Easy Zillow Api"
     %link{:rel => 'stylesheet', :href => '/js/rainbow/themes/github.css'}
     %link{:rel => 'stylesheet', :href => '/css/term.css'}
     %link{:rel => 'stylesheet', :href => '/css/api.css'}
+    %style
+      :sass
+        h1 a
+          display: block
+          background: url(/i/zirrow.png) no-repeat 0 3px
+          height: 29px
+          width: 109px
+          padding-bottom: 5px
+          text-indent: -99em
 
   %body
     #main.wrap
@@ -16,7 +25,7 @@
         #key
           %label{ :for => 'z_key' }
             Your Key
-            %input{ :name => 'z_key', :value => @z_key }
+            %input{ :name => 'z_key', :id => 'z_key', :value => @z_key }
 
 
       #begin.cf

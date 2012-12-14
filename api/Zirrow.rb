@@ -66,11 +66,11 @@ class Zirrow
 		}
 
 		@selectors = {
-			:description => '#corpright p:first',
-			:parameters  => '#corpright table:first td:nth-child(1)',
-			:needed      => '#corpright table:first td:nth-child(3)',
-			:expect      => '#corpright table:nth-child(2)',
-			:example     => '#corpright p.linkcode',
+			:description => 'p:first',
+			:parameters  => 'table:first td:nth-child(1)',
+			:needed      => 'table:first td:nth-child(3)',
+			:expect      => 'table:nth-child(2)',
+			:example     => 'p.linkcode',
 		}
 
 		@github = 'https://github.com/dancrew32/zirrow'
@@ -332,6 +332,10 @@ CalculateHELOC
 	def describe html
 		out  = ""
 		html.css(@selectors[:description]).each { |n| out += n }
+		out.gsub!('Have a question? Find help from a Pro here.', '')
+		out.gsub!(', including:', '.')
+		out.gsub!('The result set contains the following attributes:', '')
+		out.gsub!(' with the following information:', '.')
 		out
 	end
 
@@ -350,6 +354,7 @@ CalculateHELOC
 		html.css(@selectors[:expect]).to_s
 	end
 
+	# GET EXAMPLE
 	def example html
 		require 'cgi'
 		url = html.css(@selectors[:example]).to_s
@@ -366,8 +371,6 @@ CalculateHELOC
 		end
 		out.to_s[1..-1][0..-2].gsub('=>', ' => ') # remove { and }
 	end
-
-	private
 
 	# MAKE REQUEST
 	def req api, body
