@@ -39,7 +39,7 @@ and implement it in the Sinatra app.
 The following returns search results (json) for this address:
 
 ```ruby
-@z = new.Zirrow :key => 'myZWSID'
+@z = Zirrow.new :key => 'myZWSID'
 @z.search 'address' => '184 17th ave', 'citystatezip' => 'san francisco ca'	
 ```
 
