@@ -25,6 +25,9 @@ You'll need to request a
 [Zillow Api Key](http://www.zillow.com/webservice/APIUpgradeRequest.htm) 
 to get rolling.
 
+When you get your key, go in and 
+[edit the settings in app.rb](https://github.com/dancrew32/zirrow/blob/master/app.rb#L7-L17).
+
 
 ## What's it do?
 
