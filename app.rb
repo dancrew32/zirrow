@@ -1,21 +1,28 @@
-require 'sinatra'
-require 'data_mapper'
-require 'dm-mysql-adapter'
-require './model/cache'
-require './api/Zirrow'
+# DEPENDENCIES
+%w(sinatra data_mapper dm-mysql-adapter ./model/cache ./api/Zirrow).each do |r|
+	require r
+end
 
+
+# DATABASE (for caching)
 DataMapper.setup :default, 'mysql://%s:%s@localhost/%s' % ['user', 'pass', 'dbname']
 DataMapper.auto_upgrade!
+DataMapper.finalize
+
+
+# APP SETTINGS
 set :site_title, 'Zirrow'
 set :public_folder, settings.root + '/public'
 set :environment, :development
 set :default_key, 'your key'
 
-@@z  = Zirrow.new
+
+# HELPERS
 helpers { require './helpers' }
 
 
 # ROUTES
+@@z  = Zirrow.new
 before do
 	@z_key = params.fetch 'z_key', settings.default_key
 	@z     = Zirrow.new :key => @z_key

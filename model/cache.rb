@@ -5,4 +5,3 @@ class Cache
 	property :content,    Text
 	property :created_at, Time
 end
-DataMapper.finalize
